@@ -1,0 +1,1094 @@
+{
+  "name": "flash-vim",
+  "displayName": "Flash for VS Code & Cursor & Antigravity",
+  "description": "Navigate your code with search labels, enhanced character motions, and AST Treesitter integration. Port of folke/flash.nvim.",
+  "version": "1.0.0",
+  "publisher": "folke-flash",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/folke/flash.nvim"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Keymaps",
+    "Other"
+  ],
+  "keywords": [
+    "flash",
+    "jump",
+    "motion",
+    "easymotion",
+    "hop",
+    "leap",
+    "vim",
+    "neovim",
+    "navigation"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "flash.jump",
+        "title": "Flash: Jump",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.jumpSelect",
+        "title": "Flash: Jump and Select",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.treesitter",
+        "title": "Flash: Treesitter AST Node Selection",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.treesitterSearch",
+        "title": "Flash: Treesitter Search and Select AST Node",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.jumpWord",
+        "title": "Flash: Jump to Word",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.jumpLine",
+        "title": "Flash: Jump to Line",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.findNextChar",
+        "title": "Flash: Find Next Char (f)",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.findPrevChar",
+        "title": "Flash: Find Prev Char (F)",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.tillNextChar",
+        "title": "Flash: Till Next Char (t)",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.tillPrevChar",
+        "title": "Flash: Till Prev Char (T)",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.repeat",
+        "title": "Flash: Repeat Last Motion",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.cancel",
+        "title": "Flash: Cancel",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.backspace",
+        "title": "Flash: Backspace Query",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.jumpFirst",
+        "title": "Flash: Jump to First / Current Match",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.nextMatch",
+        "title": "Flash: Next Match",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.prevMatch",
+        "title": "Flash: Previous Match",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.toggleMode",
+        "title": "Flash: Toggle Match Mode (exact/fuzzy/regex)",
+        "category": "Flash"
+      },
+      {
+        "command": "flash.inputKey",
+        "title": "Flash: Input Key",
+        "category": "Flash"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "flash.jump",
+        "key": "cmd+alt+s",
+        "mac": "cmd+alt+s",
+        "when": "editorTextFocus && !flash.active"
+      },
+      {
+        "command": "flash.treesitter",
+        "key": "cmd+alt+t",
+        "mac": "cmd+alt+t",
+        "when": "editorTextFocus && !flash.active"
+      },
+      {
+        "command": "flash.jumpWord",
+        "key": "cmd+alt+w",
+        "mac": "cmd+alt+w",
+        "when": "editorTextFocus && !flash.active"
+      },
+      {
+        "command": "flash.jump",
+        "key": "alt+s",
+        "mac": "alt+s",
+        "when": "editorTextFocus && !flash.active"
+      },
+      {
+        "command": "flash.jumpSelect",
+        "key": "alt+shift+s",
+        "mac": "alt+shift+s",
+        "when": "editorTextFocus && !flash.active"
+      },
+      {
+        "command": "flash.treesitter",
+        "key": "alt+t",
+        "mac": "alt+t",
+        "when": "editorTextFocus && !flash.active"
+      },
+      {
+        "command": "flash.jumpWord",
+        "key": "alt+w",
+        "mac": "alt+w",
+        "when": "editorTextFocus && !flash.active"
+      },
+      {
+        "command": "flash.jumpLine",
+        "key": "alt+l",
+        "mac": "alt+l",
+        "when": "editorTextFocus && !flash.active"
+      },
+      {
+        "command": "flash.cancel",
+        "key": "escape",
+        "when": "flash.active"
+      },
+      {
+        "command": "flash.backspace",
+        "key": "backspace",
+        "when": "flash.active"
+      },
+      {
+        "command": "flash.jumpFirst",
+        "key": "enter",
+        "when": "flash.active"
+      },
+      {
+        "command": "flash.nextMatch",
+        "key": "tab",
+        "when": "flash.active"
+      },
+      {
+        "command": "flash.prevMatch",
+        "key": "shift+tab",
+        "when": "flash.active"
+      },
+      {
+        "command": "flash.toggleMode",
+        "key": "ctrl+s",
+        "when": "flash.active"
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "a",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "a"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "b",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "b"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "c",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "c"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "d",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "d"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "e",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "e"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "f",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "f"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "g",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "g"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "h",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "h"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "i",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "i"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "j",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "j"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "k",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "k"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "l",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "l"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "m",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "m"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "n",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "n"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "o",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "o"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "p",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "p"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "q",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "q"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "r",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "r"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "s",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "s"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "t",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "t"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "u",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "u"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "v",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "v"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "w",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "w"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "x",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "x"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "y",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "y"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "z",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "z"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+a",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "A"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+b",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "B"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+c",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "C"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+d",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "D"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+e",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "E"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+f",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "F"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+g",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "G"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+h",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "H"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+i",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "I"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+j",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "J"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+k",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "K"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+l",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "L"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+m",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "M"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+n",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "N"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+o",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "O"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+p",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "P"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+q",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "Q"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+r",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "R"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+s",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "S"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+t",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "T"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+u",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "U"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+v",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "V"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+w",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "W"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+x",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "X"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+y",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "Y"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+z",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "Z"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "0",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "0"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "1",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "1"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "2",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "2"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "3",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "3"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "4",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "4"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "5",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "5"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "6",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "6"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "7",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "7"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "8",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "8"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "9",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "9"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+0",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": ")"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+1",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "!"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+2",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "@"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+3",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "#"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+4",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "$"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+5",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "%"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+6",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "^"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+7",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "&"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+8",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "*"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+9",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "("
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "space",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": " "
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "-",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "-"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+-",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "_"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "=",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "="
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+=",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "+"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "[",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "["
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+[",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "{"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "]",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "]"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+]",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "}"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "\\",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "\\"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+\\",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "|"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": ";",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": ";"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+;",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": ":"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "'",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "'"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+'",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "\""
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": ",",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": ","
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+,",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "<"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": ".",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "."
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+.",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": ">"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "/",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "/"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+/",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "?"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "`",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "`"
+        }
+      },
+      {
+        "command": "flash.inputKey",
+        "key": "shift+`",
+        "when": "editorTextFocus && flash.active",
+        "args": {
+          "character": "~"
+        }
+      }
+    ],
+    "configuration": {
+      "title": "Flash",
+      "properties": {
+        "flash.labels": {
+          "type": "string",
+          "default": "asdfghjklqwertyuiopzxcvbnm",
+          "description": "Keys used for jump labels in order of priority (home row first)."
+        },
+        "flash.search.mode": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "fuzzy",
+            "regex"
+          ],
+          "default": "exact",
+          "description": "Matching mode: exact, fuzzy, or regular expression."
+        },
+        "flash.search.multiWindow": {
+          "type": "boolean",
+          "default": true,
+          "description": "Search and display jump labels across all visible editor panes."
+        },
+        "flash.search.smartCase": {
+          "type": "boolean",
+          "default": true,
+          "description": "Case-insensitive if pattern is lowercase; case-sensitive if pattern has uppercase."
+        },
+        "flash.search.maxMatchCount": {
+          "type": "number",
+          "default": 300,
+          "description": "Maximum number of visible matches to process for performance."
+        },
+        "flash.label.uppercase": {
+          "type": "boolean",
+          "default": true,
+          "description": "Allow uppercase labels when candidate matches exceed lowercase labels."
+        },
+        "flash.label.reuse": {
+          "type": "string",
+          "enum": [
+            "lowercase",
+            "all",
+            "none"
+          ],
+          "default": "lowercase",
+          "description": "Reuse assigned labels across subsequent keystrokes to prevent label flickering."
+        },
+        "flash.label.distanceSort": {
+          "type": "boolean",
+          "default": true,
+          "description": "Sort candidate matches by distance from cursor to give closer targets higher priority labels."
+        },
+        "flash.label.style": {
+          "type": "string",
+          "enum": [
+            "overlay",
+            "after",
+            "before"
+          ],
+          "default": "overlay",
+          "description": "Position style of jump labels relative to matched characters."
+        },
+        "flash.label.minPatternLength": {
+          "type": "number",
+          "default": 0,
+          "description": "Minimum pattern length required before showing jump labels (0 shows labels from 1st char)."
+        },
+        "flash.highlight.backdrop": {
+          "type": "boolean",
+          "default": true,
+          "description": "Dim / fade out non-matching text to make search targets and labels pop."
+        },
+        "flash.highlight.labelBackgroundColor": {
+          "type": "string",
+          "default": "#ff007c",
+          "description": "Background color for jump labels (Folke's iconic magenta badge)."
+        },
+        "flash.highlight.labelForegroundColor": {
+          "type": "string",
+          "default": "#ffffff",
+          "description": "Foreground text color for jump labels."
+        },
+        "flash.highlight.matchBackgroundColor": {
+          "type": "string",
+          "default": "rgba(62, 104, 215, 0.35)",
+          "description": "Highlight background color for search matches."
+        },
+        "flash.highlight.currentMatchBackgroundColor": {
+          "type": "string",
+          "default": "rgba(255, 150, 108, 0.50)",
+          "description": "Highlight background color for current / active match."
+        },
+        "flash.charMotion.multiLine": {
+          "type": "boolean",
+          "default": true,
+          "description": "Allow f/t/F/T motions to search across visible lines instead of current line only."
+        },
+        "flash.jump.autojump": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically jump when there is only one match remaining."
+        },
+        "flash.inputMode": {
+          "type": "string",
+          "enum": [
+            "inEditor",
+            "quickInput"
+          ],
+          "default": "inEditor",
+          "description": "Input capture mode: \"inEditor\" captures keystrokes directly in editor without hijacking the global type command; \"quickInput\" uses a floating QuickInput box."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node ./dist/test/runUnitTests.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.80.0",
+    "mocha": "^10.3.0",
+    "typescript": "^5.3.3"
+  }
+}
